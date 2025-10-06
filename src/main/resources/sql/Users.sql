@@ -5,3 +5,4 @@ CREATE TABLE users
     email     VARCHAR NOT NULL UNIQUE,
     password  VARCHAR NOT NULL
 );
+-- DROP TABLE users;
