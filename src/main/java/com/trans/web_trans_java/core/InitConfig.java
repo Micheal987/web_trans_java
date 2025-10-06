@@ -102,19 +102,19 @@ public class InitConfig {
 
     public boolean setConfig(Config conf, ConfigEnums type) {
         return switch (type) {
-            case ConfigEnums.EmailConfig -> {
+            case EmailConfig -> {
                 conf.setEmailConfig(conf.getEmailConfig());
                 yield true;
             }
-            case ConfigEnums.EsConfig -> {
+            case EsConfig -> {
                 conf.setEsConfig(conf.getEsConfig());
                 yield true;
             }
-            case ConfigEnums.QiNiuConfig -> {
+            case QiNiuConfig -> {
                 conf.setQiNiuConfig(conf.getQiNiuConfig());
                 yield true;
             }
-            case ConfigEnums.Ip2regionConfig -> {
+            case Ip2regionConfig -> {
                 conf.setIp2regionConfig(conf.getIp2regionConfig());
                 yield true;
             }
