@@ -29,7 +29,7 @@ public class UserController {
     //register
     @PostMapping("/register")
     public Result<Void> crateUser(@RequestBody UserModel user) {
-        Integer res = userService.CrateUserMapper(user);
+        Integer res = userService.crateUserMapper(user);
         if (res <= 0) {
             throw new BusinessException(CodeEnums.FAIL, "用户创建失败稍后重试");
         }

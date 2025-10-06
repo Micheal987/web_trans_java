@@ -61,7 +61,7 @@ public class UserService {
 
     //创建
     @Transactional // 启用事务管理
-    public Integer CrateUserMapper(UserModel user) {
+    public Integer crateUserMapper(UserModel user) {
         UserModel storedUser = userMapper.selectUserByInfoSql(user);
         //数据设计表限制 字段唯一约束
         //要么代码做判断
