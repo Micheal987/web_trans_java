@@ -1,0 +1,25 @@
+[ip2region]
+filepath = "/static/db/ip2region.xdb"
+[es]
+host = "127.0.0.1"
+port = 9200
+user = "elastic"
+password = "admin"
+max_retries = 10
+[email]
+from = "admin@root.com"
+to = "xxx@qq.com"
+reply_to = "xx"
+smtp_username = "user"
+smtp_password = "pwd"
+[qiniu]
+enable = true
+access_key = "key"
+secret_key = "key"
+bucket_name = "test-blog199"
+cdn = ""
+domain = "xxx"
+zone = ""
+prefix = ""
+size = 2
+record_dir = "/file/"

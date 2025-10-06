@@ -1,0 +1,18 @@
+es:
+  - host: 192.168.106.128
+    port: 92001
+    userName:
+    password:
+    maxRetries: 10
+  - host: 192.168.106.128
+    port: 9201
+    userName:
+    password:
+    maxRetries: 10
+  - host: 192.168.106.128
+    port: 9201
+    userName:
+    password:
+    maxRetries: 10
+crypto:
+  key: crypto_password
