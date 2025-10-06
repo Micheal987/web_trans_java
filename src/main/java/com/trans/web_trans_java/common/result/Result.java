@@ -10,7 +10,7 @@ public class Result<T> {
      private CodeEnums code;
      private String message;
      private T data;
-     //主构造器 - 直接赋值，保证性能和不可变性
+     //主构造器
      private  Result(CodeEnums code, String message, T data) {
          this.code = code;
          this.message = message;
