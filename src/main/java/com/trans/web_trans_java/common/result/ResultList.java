@@ -15,7 +15,8 @@ public class ResultList<T> {
     //todo 对接口增加jwt权限认证,只有admin才能查 50页以上的数据
     //todo redis/map黑名单机制  存账号一分钟内查询次数,
     //这种直接传按我的理解,没有做校验,这个有风险
-    //必须要你自己controller绑定PaginationParam这个类去校验 不能让前端随便传
+    //必须要你自己controller绑定PaginationParam这个类去校验
+    // 不能让前端随便传
     ResultList(Integer limit, Integer page, List<T> items) {
         this.paginationParam = new PaginationParam(limit, page);
         this.items = items;
