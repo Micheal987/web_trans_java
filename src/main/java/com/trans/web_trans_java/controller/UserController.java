@@ -48,18 +48,13 @@ public class UserController {
     @GetMapping("/list")
     public Result<ResultList<UserModel>> getUserList(@RequestParam Integer PageNum, @RequestParam Integer pageSize, UserModel user) {
         List<UserModel> res = userService.getUserListByInfoMapper(PageNum, pageSize, user);
-        PaginationParam p = new PaginationParam();
-        p.setPage(PageNum);
-        p.setLimit(pageSize);
+        PaginationParam p = new PaginationParam(pageSize,PageNum);
         return ResultList.successWithList(p, res);
     }
     @GetMapping("/page")
     public Result<ResultList<UserModel>> getUserListPage(@RequestParam Integer PageNum, @RequestParam Integer pageSize, UserModel user) {
         List<UserModel> res = userService.getUserListPageMapper(PageNum, pageSize, user);
-        PaginationParam p = new PaginationParam();
-        p.setPage(PageNum);
-        p.setLimit(pageSize);
-        return ResultList.successWithList(p, res);
+        return ResultList.success(pageSize,PageNum,res);
     }
 
     // update
