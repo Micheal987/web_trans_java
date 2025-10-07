@@ -9,7 +9,6 @@ import java.util.List;
 public class ResultList<T> {
     PaginationParam paginationParam;
     SearchKey searchKey;
-    List<T> resultList;
     private List<T> items;
 
     //必须做限制
