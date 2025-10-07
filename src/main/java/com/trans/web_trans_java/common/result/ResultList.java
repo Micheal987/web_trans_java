@@ -51,17 +51,17 @@ public class ResultList<T> {
 
     public static <T> Result<ResultList<T>> success(Integer limit, Integer page, T items) {
         ResultList<T> data = newResultList(limit, page, List.of(items));
-        return Result.failWithData(data);
+        return Result.successWithData(data);
     }
 
     public static <T> Result<ResultList<T>> success(Integer limit, Integer page, List<T> items) {
         ResultList<T> data = newResultList(limit, page, items);
-        return Result.failWithData(data);
+        return Result.successWithData(data);
     }
 
     public static <T> Result<ResultList<T>> successWithList(PaginationParam paginationParam, List<T> items) {
         ResultList<T> data = newResultList(paginationParam.getLimit(), paginationParam.getPage(), items);
-        return Result.failWithData(data);
+        return Result.successWithData(data);
     }
 
     //PaginationParam paginationParam, List<T> items
@@ -75,17 +75,17 @@ public class ResultList<T> {
 
     public static <T> Result<ResultList<T>> successParam(PaginationParam paginationParam, T items) {
         ResultList<T> data = newResultListParam(paginationParam, List.of(items));
-        return Result.failWithData(data);
+        return Result.successWithData(data);
     }
 
     public static <T> Result<ResultList<T>> successParamList(PaginationParam paginationParam, List<T> items) {
         ResultList<T> data = newResultListParam(paginationParam, items);
-        return Result.failWithData(data);
+        return Result.successWithData(data);
     }
 
     public static <T> Result<ResultList<T>> successWithParamData(ResultList<T> result) {
         ResultList<T> data = newResultListParam(result.getPaginationParam(), result.getItems());
-        return Result.failWithData(data);
+        return Result.successWithData(data);
     }
 
     //Integer limit, Integer page, Integer total, List<T> items
@@ -100,12 +100,12 @@ public class ResultList<T> {
 
     public static <T> Result<ResultList<T>> successEven(Integer limit, Integer page, Integer total, T items) {
         ResultList<T> data = newResultListParam(limit, page, total, List.of(items));
-        return Result.failWithData(data);
+        return Result.successWithData(data);
     }
 
     public static <T> Result<ResultList<T>> successEvenList(PaginationParam paginationParam, List<T> items) {
         ResultList<T> data = newResultListParam(paginationParam.getLimit(), paginationParam.getPage(), paginationParam.getTotal(), items);
-        return Result.failWithData(data);
+        return Result.successWithData(data);
     }
 
     //Search
