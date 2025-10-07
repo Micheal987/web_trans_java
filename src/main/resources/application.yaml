@@ -26,6 +26,11 @@ sa-token:
   token-style: uuid
   # 是否输出操作日志
   is-log: true
+  #分页
+pagehelper:
+  propertyName: propertyValue
+  reasonable: false
+  defaultCount: true # 分页插件默认参数支持 default-count 形式，自定义扩展的参数，必须大小写一致
 # 配置mybatis实体和xml映射
 mybatis:
   configuration:

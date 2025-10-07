@@ -35,7 +35,7 @@ public class UserService {
         }
         String storePwd = storedUser.getPassword();
         try {
-            String decryptedInputPwd  = EncryptionPwd.decrypt(storePwd);
+            String decryptedInputPwd = EncryptionPwd.decrypt(storePwd);
 
             if (!decryptedInputPwd.equals(inputPwd)) {
                 log.error("输入密码{}:原密码{}", inputPwd, decryptedInputPwd);
@@ -44,7 +44,7 @@ public class UserService {
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            String msg  = String.format("错误原因{}%s",e.getMessage());
+            String msg = String.format("错误原因{}%s", e.getMessage());
             throw new BusinessException(CodeEnums.FAIL, msg);
         }
         //token
@@ -56,6 +56,13 @@ public class UserService {
     public List<UserModel> getUserListByInfoMapper(Integer PageNum, Integer PageSize, UserModel user) {
         PageHelper.startPage(PageNum, PageSize);
         List<UserModel> res = userMapper.selectUserListByInfoSql(PageNum, PageSize, user);
+        return PageInfo.of(res).getList();
+    }
+
+    //分页
+    public List<UserModel> getUserListPageMapper(Integer PageNum, Integer PageSize, UserModel user) {
+        PageHelper.offsetPage((PageNum - 1) * PageSize, PageSize);
+        List<UserModel> res = userMapper.selectUserListByPageSql(PageNum, PageSize, user);
         return PageInfo.of(res).getList();
     }
 
@@ -79,7 +86,7 @@ public class UserService {
     //更新
     public Integer updateUserMapper(Integer id, UserModel user) {
         user.setID(id);
-        return userMapper.updateUserByIdSql(id,user);
+        return userMapper.updateUserByIdSql(id, user);
     }
 
     //删除
