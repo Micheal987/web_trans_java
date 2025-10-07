@@ -22,13 +22,13 @@ public class UserController {
 
     //info
     @GetMapping("/info/{id}")
-    public Result<UserModel> index(@PathVariable("id") Integer id) {
+    public Result<UserModel> userInfoView(@PathVariable("id") Integer id) {
         return Result.successWithData(userService.getUserMapper(id));
     }
 
     //register
     @PostMapping("/register")
-    public Result<Void> crateUser(@RequestBody UserModel user) {
+    public Result<Void> crateUserView(@RequestBody UserModel user) {
         Integer res = userService.crateUserMapper(user);
         if (res <= 0) {
             throw new BusinessException(CodeEnums.FAIL, "用户创建失败稍后重试");
@@ -38,7 +38,7 @@ public class UserController {
 
     //login
     @PostMapping("/login")
-    public Result<LoginToken> login(@RequestBody UserModel user) {
+    public Result<LoginToken> loginView(@RequestBody UserModel user) {
         LoginToken result = new LoginToken(userService.authMapper(user));
         return Result.successWithData(result);
     }
@@ -46,13 +46,13 @@ public class UserController {
 
     //page
     @GetMapping("/list")
-    public Result<ResultList<UserModel>> getUserList(@RequestParam Integer PageNum, @RequestParam Integer pageSize, UserModel user) {
+    public Result<ResultList<UserModel>> userListView(@RequestParam Integer PageNum, @RequestParam Integer pageSize, UserModel user) {
         List<UserModel> res = userService.getUserListByInfoMapper(PageNum, pageSize, user);
         PaginationParam p = new PaginationParam(pageSize,PageNum);
         return ResultList.successWithList(p, res);
     }
     @GetMapping("/page")
-    public Result<ResultList<UserModel>> getUserListPage(@RequestParam Integer PageNum, @RequestParam Integer pageSize, UserModel user) {
+    public Result<ResultList<UserModel>> userListPageView(@RequestParam Integer PageNum, @RequestParam Integer pageSize, UserModel user) {
         List<UserModel> res = userService.getUserListPageMapper(PageNum, pageSize, user);
         return ResultList.success(pageSize,PageNum,res);
     }

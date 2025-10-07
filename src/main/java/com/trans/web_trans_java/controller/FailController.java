@@ -16,22 +16,22 @@ import java.util.Optional;
 @RequestMapping(path = "fail")
 public class FailController {
     @GetMapping("/res")
-    public Result<Void> fail() {
+    public Result<Void> failView() {
         return Result.failWithMsgDefault();
     }
 
     @GetMapping("global")
-    public String failGlobal() {
+    public String failGlobalView() {
         throw new RuntimeException();
     }
 
     @GetMapping("Business")
-    public String failBusinessException() {
+    public String failBusinessExceptionView() {
         throw new BusinessException(CodeEnums.FAIL, "fail");
     }
     // 模拟参数校验异常
     @GetMapping("/valid/{id}")
-    public Result<Void> testValidation(@PathVariable String id) {
+    public Result<Void> testValidationView(@PathVariable String id) {
         if (id == null || id.trim().isEmpty()) {
             throw new IllegalArgumentException("ID不能为空");
         }
