@@ -6,7 +6,7 @@
     <!-- 不熟悉的打开mybatis的debug看sql语句-->
     <!--sql语句-->
     <select id="selectUserByIdSql" resultType="com.trans.web_trans_java.entity.UserModel">
-        select * from users where id = #{id}
+        SELECT * FROM users WHERE id = #{id}
     </select>
     <!-- login-->
     <select id="selectUserByInfoSql"

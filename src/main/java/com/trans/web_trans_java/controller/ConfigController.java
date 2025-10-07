@@ -31,7 +31,7 @@ public class ConfigController {
     }
 
     @GetMapping("/c/{type}")
-    public Result<Object> all1(@PathVariable("type") ConfigEnums type) throws IOException {
+    public Result<?> all1(@PathVariable("type") ConfigEnums type) throws IOException {
         Config c = InitConfig.ReadConfig();
         return switch (type) {
             case EsConfig -> Result.successWithData(c.getEsConfig());
