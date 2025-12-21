@@ -17,11 +17,8 @@ public class ResultList<T> {
     //这种直接传按我的理解,没有做校验,这个有风险
     //必须要你自己controller绑定PaginationParam这个类去校验
     // 不能让前端随便传
-    ResultList(Integer limit, Integer page, List<T> items) {
-        this.paginationParam = new PaginationParam(limit, page);
-        this.items = items;
-    }
 
+    public ResultList(PaginationParam paginationParam, SearchKey searchKey, List<T> items) {}
     ResultList(Integer limit, Integer page, Integer total, List<T> items) {
         this.paginationParam = new PaginationParam(limit, page, total);
         this.items = items;
@@ -39,30 +36,6 @@ public class ResultList<T> {
         this.paginationParam = paginationParam;
         searchKey.setKeyword(key);
         this.items = items;
-    }
-
-    //(Integer limit, Integer page, List<T> items
-    private static <T> ResultList<T> newResultList(Integer limit, Integer page, List<T> items) {
-        return new ResultList<>(limit, page, items);
-    }
-
-    public ResultList<T> successWithSelf() {
-        return newResultList(getPaginationParam().getLimit(), getPaginationParam().getPage(), getItems());
-    }
-
-    public static <T> Result<ResultList<T>> success(Integer limit, Integer page, T items) {
-        ResultList<T> data = newResultList(limit, page, List.of(items));
-        return Result.successWithData(data);
-    }
-
-    public static <T> Result<ResultList<T>> success(Integer limit, Integer page, List<T> items) {
-        ResultList<T> data = newResultList(limit, page, items);
-        return Result.successWithData(data);
-    }
-
-    public static <T> Result<ResultList<T>> successWithList(PaginationParam paginationParam, List<T> items) {
-        ResultList<T> data = newResultList(paginationParam.getLimit(), paginationParam.getPage(), items);
-        return Result.successWithData(data);
     }
 
     //PaginationParam paginationParam, List<T> items
@@ -95,8 +68,8 @@ public class ResultList<T> {
     }
 
     //total
-    public ResultList<T> successWithEvenSelf(Integer total) {
-        return newResultListParam(getPaginationParam().getLimit(), getPaginationParam().getPage(), total, getItems());
+    public Result<ResultList<T>> successWithEvenSelf(Integer total) {
+        return Result.successWithData(newResultListParam(getPaginationParam().getLimit(), getPaginationParam().getPage(), total, getItems()));
     }
 
     public static <T> Result<ResultList<T>> successEven(Integer limit, Integer page, Integer total, T items) {

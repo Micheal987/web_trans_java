@@ -4,6 +4,7 @@ import com.trans.web_trans_java.common.enums.CodeEnums;
 import com.trans.web_trans_java.common.result.PaginationParam;
 import com.trans.web_trans_java.common.result.Result;
 import com.trans.web_trans_java.common.result.ResultList;
+import com.trans.web_trans_java.common.result.SearchKey;
 import com.trans.web_trans_java.dto.request.IdsRequest;
 import com.trans.web_trans_java.dto.response.LoginToken;
 import com.trans.web_trans_java.entity.UserModel;
@@ -48,13 +49,14 @@ public class UserController {
     @GetMapping("/list")
     public Result<ResultList<UserModel>> userListView(@RequestParam Integer PageNum, @RequestParam Integer pageSize, UserModel user) {
         List<UserModel> res = userService.getUserListByInfoMapper(PageNum, pageSize, user);
-        PaginationParam p = new PaginationParam(pageSize,PageNum);
-        return ResultList.successWithList(p, res);
+        PaginationParam pagination = new PaginationParam(pageSize,PageNum,res.size());
+        return ResultList.successParamList(pagination,res);
     }
     @GetMapping("/page")
     public Result<ResultList<UserModel>> userListPageView(@RequestParam Integer PageNum, @RequestParam Integer pageSize, UserModel user) {
         List<UserModel> res = userService.getUserListPageMapper(PageNum, pageSize, user);
-        return ResultList.success(pageSize,PageNum,res);
+        PaginationParam pagination = new PaginationParam(pageSize,PageNum,res.size());
+        return new ResultList<UserModel>(pagination,new SearchKey(),res).successWithEvenSelf(res.size());
     }
 
     // update

@@ -14,20 +14,9 @@ public class PaginationParam {
     @Max(value = 50)
     private Integer page;
     private Integer total;
-
-    public PaginationParam(Integer limit, Integer page) {
-        this.limit = limit;
-        this.page = page;
-        this.total = total();
-    }
-
     public PaginationParam(Integer limit, Integer page, Integer total) {
         this.limit = limit;
         this.page = page;
         this.total = total;
-    }
-
-    public Integer total() {
-        return getLimit() * getPage();
     }
 }
