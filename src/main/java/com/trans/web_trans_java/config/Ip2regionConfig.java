@@ -1,8 +1,10 @@
 package com.trans.web_trans_java.config;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.With;
 
-@Data
-public class Ip2regionConfig {
-    private String filepath;
+@Builder
+@With
+public record Ip2regionConfig(String filepath) {
+
 }

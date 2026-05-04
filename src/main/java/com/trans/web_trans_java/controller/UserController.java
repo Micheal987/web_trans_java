@@ -1,5 +1,6 @@
 package com.trans.web_trans_java.controller;
 
+import cn.dev33.satoken.util.SaResult;
 import com.trans.web_trans_java.common.enums.CodeEnums;
 import com.trans.web_trans_java.common.result.PaginationParam;
 import com.trans.web_trans_java.common.result.Result;
@@ -42,6 +43,11 @@ public class UserController {
     public Result<LoginToken> loginView(@RequestBody UserModel user) {
         LoginToken result = new LoginToken(userService.authMapper(user));
         return Result.successWithData(result);
+    }
+    //login
+    @PostMapping("/logout")
+    public Result<SaResult> logoutView() {
+        return  Result.successWithData(userService.logoutMapper());
     }
 
 

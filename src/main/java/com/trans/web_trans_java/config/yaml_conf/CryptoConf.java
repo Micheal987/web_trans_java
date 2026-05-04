@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class CryptoConf {
     private String key;
+    private Integer bcryptStrength;
 
 }

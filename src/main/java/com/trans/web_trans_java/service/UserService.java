@@ -1,6 +1,7 @@
 package com.trans.web_trans_java.service;
 
 import cn.dev33.satoken.stp.StpUtil;
+import cn.dev33.satoken.util.SaResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trans.web_trans_java.common.enums.CodeEnums;
@@ -35,10 +36,10 @@ public class UserService {
         }
         String storePwd = storedUser.getPassword();
         try {
-            String decryptedInputPwd = EncryptionPwd.decrypt(storePwd);
+            boolean decryptedInputPwd = EncryptionPwd.decrypt(inputPwd,storePwd);
 
-            if (!decryptedInputPwd.equals(inputPwd)) {
-                log.error("输入密码{}:原密码{}", inputPwd, decryptedInputPwd);
+            if (!decryptedInputPwd) {
+                log.error("输入密码{}:原密码{}", inputPwd, storePwd);
                 throw new BusinessException(CodeEnums.FAIL, "用户名称或密码错误");
             }
 
@@ -52,6 +53,11 @@ public class UserService {
         return StpUtil.getTokenValue();
     }
 
+    //logout
+    public SaResult logoutMapper() {
+        StpUtil.logout();
+        return SaResult.ok();
+    }
     //分页
     public List<UserModel> getUserListByInfoMapper(Integer PageNum, Integer PageSize, UserModel user) {
         PageHelper.startPage(PageNum, PageSize);

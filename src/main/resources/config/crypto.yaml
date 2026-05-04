@@ -15,4 +15,5 @@ es:
     password:
     maxRetries: 10
 crypto:
-  key: crypto_password
+  key: R2tY5uI9oP0sD3fG
+  bcryptStrength: 16 #加密长度

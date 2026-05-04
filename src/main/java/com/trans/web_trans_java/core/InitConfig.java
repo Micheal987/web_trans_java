@@ -48,8 +48,7 @@ public class InitConfig {
     public static Config ReadConfig() throws IOException {
         FileConfig tomlParser = tomlConfiguration();
         //Ip2regionConfig
-        Ip2regionConfig ip2regionConfig = new Ip2regionConfig();
-        ip2regionConfig.setFilepath(tomlParser.get("ip2region.filepath"));
+        Ip2regionConfig ip2regionConfig =   Ip2regionConfig.builder().filepath(tomlParser.get("ip2region.filepath")).build();
         //EmailConfig
         EmailConfig email = ReadEmailConfig(tomlParser);
         //es
@@ -58,10 +57,12 @@ public class InitConfig {
         QiNiuConfig qiNiu = ReadQiNiuConfig(tomlParser);
         //Config
         Config config = new Config();
+        config.setIp2regionConfig(ip2regionConfig);
         config.setEmailConfig(email);
         config.setEsConfig(es);
         config.setQiNiuConfig(qiNiu);
-        return config;
+       return config;
+
 
     }
 
@@ -72,7 +73,13 @@ public class InitConfig {
         String reply_to = tomlParser.get(c + "reply_to");
         String smtp_username = tomlParser.get(c + "smtp_username");
         String smtp_password = tomlParser.get(c + "smtp_password");
-        return new EmailConfig(from, to, reply_to, smtp_username, smtp_password);
+        return EmailConfig.builder()
+                .from(from)
+                .to(to)
+                .reply_to(reply_to)
+                .smtp_username(smtp_username)
+                .smtp_password(smtp_password)
+                .build();
     }
 
     private static EsConfig ReadEsConfig(FileConfig tomlParser) {
@@ -82,7 +89,13 @@ public class InitConfig {
         String user = tomlParser.get(c + "user");
         String password = tomlParser.get(c + "password");
         Integer maxRetries = tomlParser.getInt(c + "max_retries");
-        return new EsConfig(host, port, user, password, maxRetries);
+        return  EsConfig.builder()
+                .host(host)
+                .port(port)
+                .user(user)
+                .pwd(password)
+                .maxRetries(maxRetries)
+                .build();
     }
 
     private static QiNiuConfig ReadQiNiuConfig(FileConfig tomlParser) {
@@ -100,26 +113,14 @@ public class InitConfig {
         return new QiNiuConfig(enable, accessKey, secretKey, bucketName, cdn, domain, zone, prefix, size, recordDir);
     }
 
-    public boolean setConfig(Config conf, ConfigEnums type) {
-        return switch (type) {
-            case EmailConfig -> {
-                conf.setEmailConfig(conf.getEmailConfig());
-                yield true;
-            }
-            case EsConfig -> {
-                conf.setEsConfig(conf.getEsConfig());
-                yield true;
-            }
-            case QiNiuConfig -> {
-                conf.setQiNiuConfig(conf.getQiNiuConfig());
-                yield true;
-            }
-            case Ip2regionConfig -> {
-                conf.setIp2regionConfig(conf.getIp2regionConfig());
-                yield true;
-            }
-            default -> false;
-        };
+    public boolean setConfig(Config conf, Config webConf,  ConfigEnums type) {
+        switch (type) {
+            case EmailConfig ->  conf.setEmailConfig(webConf.getEmailConfig());
+            case EsConfig -> conf.setEsConfig(webConf.getEsConfig());
+            case QiNiuConfig ->  conf.setQiNiuConfig(webConf.getQiNiuConfig());
+            case Ip2regionConfig -> conf.setIp2regionConfig(webConf.getIp2regionConfig());
+        }
+        return true;
 
     }
 }
