@@ -3,10 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-<!--  3.5.6-->
+        <!-- version 3.5.6-->
+        <!-- version 4.0.6-->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.9</version>
+        <version>4.0.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.trans</groupId>
@@ -35,10 +36,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- version 3.0.5-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>3.0.5</version>
+            <version>4.0.1</version>
         </dependency>
 
         <dependency>
@@ -61,10 +63,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- version 3.0.5-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter-test</artifactId>
-            <version>3.0.5</version>
+            <version>4.0.1</version>
             <scope>test</scope>
         </dependency>
         <!-- toml -->
@@ -131,24 +134,26 @@
             <artifactId>bcpkix-jdk18on</artifactId>
             <version>1.83</version>
         </dependency>
-<!--        uuid-->
+        <!-- uuid-->
         <dependency>
             <groupId>com.fasterxml.uuid</groupId>
             <artifactId>java-uuid-generator</artifactId>
             <version>5.2.0</version>
         </dependency>
-<!--        密码-->
+        <!--  密码-->
         <dependency>
             <groupId>de.mkammerer</groupId>
             <artifactId>argon2-jvm</artifactId>
             <version>2.12</version>
         </dependency>
         <!-- Sa-Token 权限认证, 在线文档：https://sa-token.cc -->
-        <!--暂时不支持4.0往上的-->
+        <!--支持4.0往上的-->
+        <!-- sa-token-spring-boot3-starter-->
+        <!-- a-token-spring-boot4-starter-->
         <dependency>
             <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-boot3-starter</artifactId>
-            <version>1.44.0</version>
+            <artifactId>sa-token-spring-boot4-starter</artifactId>
+            <version>1.45.0</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
         <dependency>
